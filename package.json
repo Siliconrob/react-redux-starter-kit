@@ -1,0 +1,54 @@
+{
+  "name": "react-redux-starter-kit",
+  "version": "1.0.0",
+  "description": "boilerplate for a better redux architecture",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghalex/react-redux-starter-kit.git"
+  },
+  "keywords": [
+    "redux",
+    "react"
+  ],
+  "author": "Ghiura Alexandru <ghalex@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ghalex/react-redux-starter-kit/issues"
+  },
+  "homepage": "https://github.com/ghalex/react-redux-starter-kit#readme",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "moment": "^2.18.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "react-router": "^4.0.0",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.6.0"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.20.0",
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-module-resolver": "^2.4.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babelify": "^7.3.0",
+    "browserify": "^14.1.0",
+    "eslint-plugin-react": "^6.10.0",
+    "express": "^4.15.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-less": "^3.3.0",
+    "pug": "^2.0.0-beta11",
+    "run-sequence": "^1.2.2",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.9.0"
+  }
+}
