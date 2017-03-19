@@ -24,7 +24,8 @@ var vendors = [
 	"react-redux",
 	"react-router",
 	"react-router-redux",
-	"redux"
+	"redux",
+	"redux-thunk"
 ];
 
 var makeBundler = function (file, args) {

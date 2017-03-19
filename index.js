@@ -6,7 +6,7 @@ app.set("views", __dirname);
 app.set("port", (process.env.PORT || 8000));
 
 app.use(express.static(__dirname + "/build"));
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
 	res.render("index");
 })
 
