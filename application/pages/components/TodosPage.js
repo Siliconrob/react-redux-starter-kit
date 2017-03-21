@@ -1,9 +1,12 @@
 import React from "react";
+import { ViewTodos } from "todos";
 
 const TodosPage = ({ }) => {
 
 	return (
-		<div className="page">Todos page</div>
+		<div className="page">
+			<ViewTodos />
+		</div>
 	)
 }
 

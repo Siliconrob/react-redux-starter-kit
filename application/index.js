@@ -16,8 +16,6 @@ document.startApp = function (container) {
 	const store = createStore();
 	const history = syncHistoryWithStore(hashHistory, store);
 	
-	console.log(container);
-
 	ReactDOM.render(
 		<Provider store={store}>
 			<Router history={history}>

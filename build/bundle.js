@@ -28,8 +28,6 @@ document.startApp = function (container) {
 	var store = (0, _store2.default)();
 	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.hashHistory, store);
 
-	console.log(container);
-
 	_reactDom2.default.render(_react2.default.createElement(
 		_reactRedux.Provider,
 		{ store: store },
@@ -89,6 +87,8 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _todos = require("../../todos");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
@@ -99,13 +99,13 @@ var TodosPage = function TodosPage(_ref) {
 	return _react2.default.createElement(
 		"div",
 		{ className: "page" },
-		"Todos page"
+		_react2.default.createElement(_todos.ViewTodos, null)
 	);
 };
 
 exports.default = TodosPage;
 
-},{"react":"react"}],4:[function(require,module,exports){
+},{"../../todos":12,"react":"react"}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -137,11 +137,18 @@ var _redux = require("redux");
 
 var _reactRouterRedux = require("react-router-redux");
 
+var _todos = require("./todos");
+
+var _todos2 = _interopRequireDefault(_todos);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = (0, _redux.combineReducers)({
-	"routing": _reactRouterRedux.routerReducer
+	"routing": _reactRouterRedux.routerReducer,
+	"todos": _todos2.default.reducer
 });
 
-},{"react-router-redux":"react-router-redux","redux":"redux"}],6:[function(require,module,exports){
+},{"./todos":12,"react-router-redux":"react-router-redux","redux":"redux"}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -169,5 +176,638 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var initialState = {};
 
-},{"./rootReducer":5,"redux":"redux","redux-thunk":"redux-thunk"}]},{},[1])
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vZGVfbW9kdWxlcy9icm93c2VyLXBhY2svX3ByZWx1ZGUuanMiLCJhcHBsaWNhdGlvblxcaW5kZXguanMiLCJhcHBsaWNhdGlvblxccGFnZXNcXGNvbXBvbmVudHNcXFByb2plY3RzUGFnZS5qcyIsImFwcGxpY2F0aW9uXFxwYWdlc1xcY29tcG9uZW50c1xcVG9kb3NQYWdlLmpzIiwiYXBwbGljYXRpb25cXHBhZ2VzXFxpbmRleC5qcyIsImFwcGxpY2F0aW9uXFxyb290UmVkdWNlci5qcyIsImFwcGxpY2F0aW9uXFxzdG9yZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7O0FDQUE7Ozs7QUFDQTs7QUFDQTs7OztBQUdBOzs7O0FBR0E7O0FBQ0E7O0FBR0E7Ozs7QUFSQTtBQVVBLFNBQVMsUUFBVCxHQUFvQixVQUFVLFNBQVYsRUFBcUI7QUFDeEMsS0FBTSxRQUFRLHNCQUFkO0FBQ0EsS0FBTSxVQUFVLHNFQUFrQyxLQUFsQyxDQUFoQjs7QUFFQSxTQUFRLEdBQVIsQ0FBWSxTQUFaOztBQUVBLG9CQUFTLE1BQVQsQ0FDQztBQUFBO0FBQUEsSUFBVSxPQUFPLEtBQWpCO0FBQ0M7QUFBQTtBQUFBLEtBQVEsU0FBUyxPQUFqQjtBQUNDLHVEQUFPLE1BQUssR0FBWixFQUFnQiwyQkFBaEIsR0FERDtBQUVDLHVEQUFPLE1BQUssV0FBWixFQUF3Qiw4QkFBeEI7QUFGRDtBQURELEVBREQsRUFPQyxTQVBEO0FBU0EsQ0FmRDs7QUFpQkE7OztBQXBCQTs7O0FBSkE7QUF5QkEsU0FBUyxRQUFULENBQWtCLFNBQVMsY0FBVCxDQUF3QixLQUF4QixDQUFsQjs7Ozs7Ozs7O0FDaENBOzs7Ozs7OztBQUVBLElBQU0sZUFBZSxTQUFmLFlBQWUsT0FBUztBQUFBOztBQUU3QixRQUNDO0FBQUE7QUFBQSxJQUFLLFdBQVUsTUFBZjtBQUFBO0FBQUEsRUFERDtBQUdBLENBTEQ7O2tCQU9lLFk7Ozs7Ozs7OztBQ1RmOzs7Ozs7OztBQUVBLElBQU0sWUFBWSxTQUFaLFNBQVksT0FBUztBQUFBOztBQUUxQixRQUNDO0FBQUE7QUFBQSxJQUFLLFdBQVUsTUFBZjtBQUFBO0FBQUEsRUFERDtBQUdBLENBTEQ7O2tCQU9lLFM7Ozs7Ozs7Ozs7QUNUZjs7OztBQUNBOzs7Ozs7UUFHQyxTO1FBQ0EsWTs7Ozs7Ozs7O0FDTEQ7O0FBQ0E7O2tCQUVlLDRCQUFnQjtBQUM5QjtBQUQ4QixDQUFoQixDOzs7Ozs7Ozs7a0JDR0EsWUFBWTtBQUMxQixLQUFJLGFBQWEsaURBQWpCO0FBQ0EsS0FBSSxRQUFRLCtDQUF5QixZQUF6QixFQUF1QyxVQUF2QyxDQUFaOztBQUVBLFFBQU8sS0FBUDtBQUNBLEM7O0FBWEQ7O0FBQ0E7Ozs7QUFDQTs7Ozs7O0FBRUEsSUFBTSxlQUFlLEVBQXJCIiwiZmlsZSI6ImdlbmVyYXRlZC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzQ29udGVudCI6WyIoZnVuY3Rpb24gZSh0LG4scil7ZnVuY3Rpb24gcyhvLHUpe2lmKCFuW29dKXtpZighdFtvXSl7dmFyIGE9dHlwZW9mIHJlcXVpcmU9PVwiZnVuY3Rpb25cIiYmcmVxdWlyZTtpZighdSYmYSlyZXR1cm4gYShvLCEwKTtpZihpKXJldHVybiBpKG8sITApO3ZhciBmPW5ldyBFcnJvcihcIkNhbm5vdCBmaW5kIG1vZHVsZSAnXCIrbytcIidcIik7dGhyb3cgZi5jb2RlPVwiTU9EVUxFX05PVF9GT1VORFwiLGZ9dmFyIGw9bltvXT17ZXhwb3J0czp7fX07dFtvXVswXS5jYWxsKGwuZXhwb3J0cyxmdW5jdGlvbihlKXt2YXIgbj10W29dWzFdW2VdO3JldHVybiBzKG4/bjplKX0sbCxsLmV4cG9ydHMsZSx0LG4scil9cmV0dXJuIG5bb10uZXhwb3J0c312YXIgaT10eXBlb2YgcmVxdWlyZT09XCJmdW5jdGlvblwiJiZyZXF1aXJlO2Zvcih2YXIgbz0wO288ci5sZW5ndGg7bysrKXMocltvXSk7cmV0dXJuIHN9KSIsImltcG9ydCBSZWFjdCBmcm9tIFwicmVhY3RcIjtcclxuaW1wb3J0IHsgUHJvdmlkZXIgfSBmcm9tIFwicmVhY3QtcmVkdXhcIjtcclxuaW1wb3J0IFJlYWN0RE9NIGZyb20gXCJyZWFjdC1kb21cIjtcclxuXHJcbi8qKiBTdG9yZSAqL1xyXG5pbXBvcnQgY3JlYXRlU3RvcmUgZnJvbSBcIi4vc3RvcmVcIjtcclxuXHJcbi8qKiBSb3V0aW5nICovXHJcbmltcG9ydCB7IFJvdXRlciwgUm91dGUsIGhhc2hIaXN0b3J5IH0gZnJvbSBcInJlYWN0LXJvdXRlclwiO1xyXG5pbXBvcnQgeyBzeW5jSGlzdG9yeVdpdGhTdG9yZSB9IGZyb20gXCJyZWFjdC1yb3V0ZXItcmVkdXhcIjtcclxuXHJcbi8qKiBQYWdlcyAqL1xyXG5pbXBvcnQgeyBUb2Rvc1BhZ2UsIFByb2plY3RzUGFnZSB9IGZyb20gXCJwYWdlc1wiO1xyXG5cclxuZG9jdW1lbnQuc3RhcnRBcHAgPSBmdW5jdGlvbiAoY29udGFpbmVyKSB7XHJcblx0Y29uc3Qgc3RvcmUgPSBjcmVhdGVTdG9yZSgpO1xyXG5cdGNvbnN0IGhpc3RvcnkgPSBzeW5jSGlzdG9yeVdpdGhTdG9yZShoYXNoSGlzdG9yeSwgc3RvcmUpO1xyXG5cdFxyXG5cdGNvbnNvbGUubG9nKGNvbnRhaW5lcik7XHJcblxyXG5cdFJlYWN0RE9NLnJlbmRlcihcclxuXHRcdDxQcm92aWRlciBzdG9yZT17c3RvcmV9PlxyXG5cdFx0XHQ8Um91dGVyIGhpc3Rvcnk9e2hpc3Rvcnl9PlxyXG5cdFx0XHRcdDxSb3V0ZSBwYXRoPVwiL1wiIGNvbXBvbmVudD17VG9kb3NQYWdlfSAvPlxyXG5cdFx0XHRcdDxSb3V0ZSBwYXRoPVwiL3Byb2plY3RzXCIgY29tcG9uZW50PXtQcm9qZWN0c1BhZ2V9IC8+XHJcblx0XHRcdDwvUm91dGVyPlxyXG5cdFx0PC9Qcm92aWRlcj4sXHJcblx0XHRjb250YWluZXJcclxuXHQpO1xyXG59XHJcblxyXG4vKiogU3RhcnQgYXBwICovXHJcbmRvY3VtZW50LnN0YXJ0QXBwKGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiYXBwXCIpKTsiLCJpbXBvcnQgUmVhY3QgZnJvbSBcInJlYWN0XCI7XHJcblxyXG5jb25zdCBQcm9qZWN0c1BhZ2UgPSAoeyB9KSA9PiB7XHJcblxyXG5cdHJldHVybiAoXHJcblx0XHQ8ZGl2IGNsYXNzTmFtZT1cInBhZ2VcIj5Qcm9qZWN0cyBwYWdlPC9kaXY+XHJcblx0KVxyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBQcm9qZWN0c1BhZ2U7IiwiaW1wb3J0IFJlYWN0IGZyb20gXCJyZWFjdFwiO1xyXG5cclxuY29uc3QgVG9kb3NQYWdlID0gKHsgfSkgPT4ge1xyXG5cclxuXHRyZXR1cm4gKFxyXG5cdFx0PGRpdiBjbGFzc05hbWU9XCJwYWdlXCI+VG9kb3MgcGFnZTwvZGl2PlxyXG5cdClcclxufVxyXG5cclxuZXhwb3J0IGRlZmF1bHQgVG9kb3NQYWdlOyIsImltcG9ydCBUb2Rvc1BhZ2UgZnJvbSBcIi4vY29tcG9uZW50cy9Ub2Rvc1BhZ2VcIjtcclxuaW1wb3J0IFByb2plY3RzUGFnZSBmcm9tIFwiLi9jb21wb25lbnRzL1Byb2plY3RzUGFnZVwiO1xyXG5cclxuZXhwb3J0IHtcclxuXHRUb2Rvc1BhZ2UsXHJcblx0UHJvamVjdHNQYWdlXHJcbn0iLCJpbXBvcnQgeyBjb21iaW5lUmVkdWNlcnMgfSBmcm9tIFwicmVkdXhcIjtcclxuaW1wb3J0IHsgcm91dGVyUmVkdWNlciB9IGZyb20gXCJyZWFjdC1yb3V0ZXItcmVkdXhcIjtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGNvbWJpbmVSZWR1Y2Vycyh7XHJcblx0XCJyb3V0aW5nXCI6IHJvdXRlclJlZHVjZXJcclxufSkiLCJpbXBvcnQgeyBjcmVhdGVTdG9yZSwgYXBwbHlNaWRkbGV3YXJlIH0gZnJvbSBcInJlZHV4XCI7XHJcbmltcG9ydCB0aHVua01pZGRsZXdhcmUgZnJvbSBcInJlZHV4LXRodW5rXCI7XHJcbmltcG9ydCByb290UmVkdWNlciBmcm9tIFwiLi9yb290UmVkdWNlclwiO1xyXG5cclxuY29uc3QgaW5pdGlhbFN0YXRlID0ge307XHJcblxyXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiAoKSB7XHJcblx0bGV0IG1pZGRsZXdhcmUgPSBhcHBseU1pZGRsZXdhcmUodGh1bmtNaWRkbGV3YXJlKTtcclxuXHRsZXQgc3RvcmUgPSBjcmVhdGVTdG9yZShyb290UmVkdWNlciwgaW5pdGlhbFN0YXRlLCBtaWRkbGV3YXJlKTtcclxuXHJcblx0cmV0dXJuIHN0b3JlO1xyXG59Il19
+},{"./rootReducer":5,"redux":"redux","redux-thunk":"redux-thunk"}],7:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.loadTodos = exports.search = exports.removeTodo = exports.addTodo = undefined;
+
+var _constants = require("./constants");
+
+var constants = _interopRequireWildcard(_constants);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var addTodo = exports.addTodo = function addTodo(todo) {
+	return {
+		type: constants.ADD,
+		payload: todo
+	};
+};
+
+var removeTodo = exports.removeTodo = function removeTodo(id) {
+	return {
+		type: constants.DELETE,
+		payload: id
+	};
+};
+
+var search = exports.search = function search(value) {
+	return {
+		type: constants.SEARCH,
+		payload: value
+	};
+};
+
+var fetching = function fetching() {
+	return {
+		type: constants.LOAD
+	};
+};
+
+var fetchComplete = function fetchComplete(todos) {
+	return {
+		type: constants.LOAD_SUCCESS,
+		payload: todos
+	};
+};
+
+// Mockup data
+// This data should be loaded form server
+var todos = [{
+	id: 1,
+	title: "You should do this",
+	createdAt: new Date()
+}, {
+	id: 2,
+	title: "Another todo for @username",
+	createdAt: new Date()
+}];
+
+var loadTodos = exports.loadTodos = function loadTodos() {
+	return function (dispatch) {
+		dispatch(fetching());
+
+		// This is a test to show you how to use
+		// async action. Replace setTimeout wit a call 
+		// to a REST api. eg. fetch(`https://www.reddit.com/r/${subreddit}.json`)
+		setTimeout(function () {
+			dispatch(fetchComplete(todos));
+		}, 1000);
+	};
+};
+
+},{"./constants":11}],8:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Todo = require("./Todo");
+
+var _Todo2 = _interopRequireDefault(_Todo);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ListTodos = function ListTodos(_ref) {
+	var todos = _ref.todos,
+	    onDelete = _ref.onDelete;
+
+	console.log(todos);
+	return _react2.default.createElement(
+		"div",
+		{ className: "todos" },
+		todos.map(function (todo, index) {
+			return _react2.default.createElement(_Todo2.default, { key: index, todo: todo, index: index, onDelete: onDelete });
+		})
+	);
+};
+
+ListTodos.propTypes = {
+	"todos": _react2.default.PropTypes.array,
+	"onDelete": _react2.default.PropTypes.func
+};
+
+exports.default = ListTodos;
+
+},{"./Todo":10,"react":"react"}],9:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SearchTodo = function (_React$Component) {
+	_inherits(SearchTodo, _React$Component);
+
+	function SearchTodo(props) {
+		_classCallCheck(this, SearchTodo);
+
+		return _possibleConstructorReturn(this, (SearchTodo.__proto__ || Object.getPrototypeOf(SearchTodo)).call(this, props));
+	}
+
+	_createClass(SearchTodo, [{
+		key: "handleKeyPress",
+		value: function handleKeyPress(e) {
+			var onSearch = this.props.onSearch;
+
+
+			if (e.key === "Enter") {
+				if (onSearch) {
+					onSearch(e.target.value);
+				}
+			}
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			var _this2 = this;
+
+			var onSearch = this.props.onSearch;
+
+
+			return _react2.default.createElement(
+				"div",
+				{ className: "search-todo" },
+				_react2.default.createElement("input", { ref: "search", type: "text", placeholder: "Enter todo name", onKeyDown: function onKeyDown(e) {
+						return _this2.handleKeyPress(e);
+					} }),
+				_react2.default.createElement(
+					"button",
+					{ onClick: function onClick() {
+							return onSearch(_this2.refs.search.value);
+						} },
+					"Search"
+				)
+			);
+		}
+	}]);
+
+	return SearchTodo;
+}(_react2.default.Component);
+
+;
+
+SearchTodo.propTypes = {
+	"onSearch": _react2.default.PropTypes.func
+};
+
+exports.default = SearchTodo;
+
+},{"react":"react"}],10:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _moment = require("moment");
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Todo = function Todo(_ref) {
+	var todo = _ref.todo,
+	    index = _ref.index,
+	    onDelete = _ref.onDelete;
+
+	var css = "todo";
+
+	if (index % 2) {
+		css += " odd";
+	}
+
+	return _react2.default.createElement(
+		"div",
+		{ className: css },
+		_react2.default.createElement(
+			"div",
+			{ className: "title" },
+			index + 1,
+			". ",
+			todo.title
+		),
+		_react2.default.createElement(
+			"label",
+			null,
+			(0, _moment2.default)(todo.createdAt).format("DD MMM YYYY")
+		),
+		_react2.default.createElement(
+			"div",
+			null,
+			_react2.default.createElement(
+				"button",
+				{ onClick: function onClick() {
+						return onDelete(todo);
+					} },
+				"Delete"
+			)
+		)
+	);
+};
+
+Todo.propTypes = {
+	"todo": _react2.default.PropTypes.object,
+	"index": _react2.default.PropTypes.number,
+	"onDelete": _react2.default.PropTypes.func
+};
+
+exports.default = Todo;
+
+},{"moment":"moment","react":"react"}],11:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var ADD = exports.ADD = "todos/ADD";
+var DELETE = exports.DELETE = "todos/DELETE";
+var SEARCH = exports.SEARCH = "todos/SEARCH";
+var LOAD = exports.LOAD = "todos/LOAD";
+var LOAD_ERROR = exports.LOAD_ERROR = "todos/LOAD_ERROR";
+var LOAD_SUCCESS = exports.LOAD_SUCCESS = "todos/LOAD_SUCCESS";
+
+},{}],12:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ViewTodos = undefined;
+
+var _selectors = require("./selectors");
+
+var selectors = _interopRequireWildcard(_selectors);
+
+var _constants = require("./constants");
+
+var constants = _interopRequireWildcard(_constants);
+
+var _actions = require("./actions");
+
+var actions = _interopRequireWildcard(_actions);
+
+var _reducer = require("./reducer");
+
+var _reducer2 = _interopRequireDefault(_reducer);
+
+var _ViewTodos = require("./views/ViewTodos");
+
+var _ViewTodos2 = _interopRequireDefault(_ViewTodos);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+exports.default = {
+	actions: actions,
+	reducer: _reducer2.default,
+	selectors: selectors,
+	constants: constants
+};
+exports.ViewTodos = _ViewTodos2.default;
+
+},{"./actions":7,"./constants":11,"./reducer":13,"./selectors":14,"./views/ViewTodos":15}],13:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _constants = require("./constants");
+
+var constants = _interopRequireWildcard(_constants);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var initialState = {
+	isFetching: false,
+	error: null,
+	search: "",
+	items: []
+};
+
+exports.default = function () {
+	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	var _ref = arguments[1];
+	var type = _ref.type,
+	    payload = _ref.payload;
+
+	switch (type) {
+
+		case constants.ADD:
+			return _extends({}, state, {
+				items: [].concat(_toConsumableArray(state.items), [payload])
+			});
+
+		case constants.DELETE:
+			return _extends({}, state, {
+				items: state.items.filter(function (value) {
+					return value.id !== payload;
+				})
+			});
+
+		case constants.LOAD:
+			return _extends({}, state, {
+				isFetching: true
+			});
+
+		case constants.SEARCH:
+			return _extends({}, state, {
+				search: payload
+			});
+
+		case constants.LOAD_SUCCESS:
+			return _extends({}, state, {
+				isFetching: false,
+				items: payload
+			});
+
+		default:
+			return state;
+
+	}
+};
+
+},{"./constants":11}],14:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.status = exports.all = undefined;
+
+var _reselect = require("reselect");
+
+var todos = function todos(state) {
+	return state.todos.items;
+};
+
+var all = exports.all = (0, _reselect.createSelector)(todos, function (state) {
+	return state.todos.search;
+}, function (todos, search) {
+	return todos.filter(function (todo) {
+		if (search === "") {
+			return true;
+		}
+
+		return todo.title.indexOf(search) > -1;
+	});
+});
+var status = exports.status = function status(state) {
+	return state.todos.isFetching ? "loading" : "ready";
+};
+
+},{"reselect":16}],15:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = require("react-redux");
+
+var _selectors = require("../selectors");
+
+var selectors = _interopRequireWildcard(_selectors);
+
+var _actions = require("../actions");
+
+var actions = _interopRequireWildcard(_actions);
+
+var _ListTodos = require("../components/ListTodos");
+
+var _ListTodos2 = _interopRequireDefault(_ListTodos);
+
+var _SearchTodo = require("../components/SearchTodo");
+
+var _SearchTodo2 = _interopRequireDefault(_SearchTodo);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ViewTodos = function (_React$Component) {
+	_inherits(ViewTodos, _React$Component);
+
+	function ViewTodos(props) {
+		_classCallCheck(this, ViewTodos);
+
+		return _possibleConstructorReturn(this, (ViewTodos.__proto__ || Object.getPrototypeOf(ViewTodos)).call(this, props));
+	}
+
+	_createClass(ViewTodos, [{
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			var onReady = this.props.onReady;
+
+			onReady();
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			var _props = this.props,
+			    todos = _props.todos,
+			    status = _props.status,
+			    onDeleteTodo = _props.onDeleteTodo,
+			    onSearch = _props.onSearch;
+
+
+			return _react2.default.createElement(
+				"div",
+				null,
+				_react2.default.createElement(_SearchTodo2.default, { onSearch: onSearch }),
+				status == "loading" ? _react2.default.createElement(
+					"div",
+					null,
+					"Loading..."
+				) : _react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(_ListTodos2.default, { todos: todos, onDelete: onDeleteTodo })
+				)
+			);
+		}
+	}]);
+
+	return ViewTodos;
+}(_react2.default.Component);
+
+;
+
+ViewTodos.propTypes = {
+	"todos": _react.PropTypes.array,
+	"status": _react.PropTypes.string,
+	"onReady": _react.PropTypes.func,
+	"onDeleteTodo": _react.PropTypes.func,
+	"onSearch": _react.PropTypes.func
+};
+
+var mapState = function mapState(state) {
+	return {
+		"todos": selectors.all(state),
+		"status": selectors.status(state)
+	};
+};
+
+var mapDispatch = function mapDispatch(dispatch) {
+	return {
+		"onReady": function onReady() {
+			dispatch(actions.loadTodos());
+		},
+		"onDeleteTodo": function onDeleteTodo(todo) {
+			dispatch(actions.removeTodo(todo.id));
+		},
+		"onSearch": function onSearch(value) {
+			dispatch(actions.search(value));
+		}
+	};
+};
+
+exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(ViewTodos);
+
+},{"../actions":7,"../components/ListTodos":8,"../components/SearchTodo":9,"../selectors":14,"react":"react","react-redux":"react-redux"}],16:[function(require,module,exports){
+'use strict';
+
+exports.__esModule = true;
+exports.defaultMemoize = defaultMemoize;
+exports.createSelectorCreator = createSelectorCreator;
+exports.createStructuredSelector = createStructuredSelector;
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function defaultEqualityCheck(a, b) {
+  return a === b;
+}
+
+function defaultMemoize(func) {
+  var equalityCheck = arguments.length <= 1 || arguments[1] === undefined ? defaultEqualityCheck : arguments[1];
+
+  var lastArgs = null;
+  var lastResult = null;
+  return function () {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    if (lastArgs === null || lastArgs.length !== args.length || !args.every(function (value, index) {
+      return equalityCheck(value, lastArgs[index]);
+    })) {
+      lastResult = func.apply(undefined, args);
+    }
+    lastArgs = args;
+    return lastResult;
+  };
+}
+
+function getDependencies(funcs) {
+  var dependencies = Array.isArray(funcs[0]) ? funcs[0] : funcs;
+
+  if (!dependencies.every(function (dep) {
+    return typeof dep === 'function';
+  })) {
+    var dependencyTypes = dependencies.map(function (dep) {
+      return typeof dep;
+    }).join(', ');
+    throw new Error('Selector creators expect all input-selectors to be functions, ' + ('instead received the following types: [' + dependencyTypes + ']'));
+  }
+
+  return dependencies;
+}
+
+function createSelectorCreator(memoize) {
+  for (var _len2 = arguments.length, memoizeOptions = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+    memoizeOptions[_key2 - 1] = arguments[_key2];
+  }
+
+  return function () {
+    for (var _len3 = arguments.length, funcs = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      funcs[_key3] = arguments[_key3];
+    }
+
+    var recomputations = 0;
+    var resultFunc = funcs.pop();
+    var dependencies = getDependencies(funcs);
+
+    var memoizedResultFunc = memoize.apply(undefined, [function () {
+      recomputations++;
+      return resultFunc.apply(undefined, arguments);
+    }].concat(memoizeOptions));
+
+    var selector = function selector(state, props) {
+      for (var _len4 = arguments.length, args = Array(_len4 > 2 ? _len4 - 2 : 0), _key4 = 2; _key4 < _len4; _key4++) {
+        args[_key4 - 2] = arguments[_key4];
+      }
+
+      var params = dependencies.map(function (dependency) {
+        return dependency.apply(undefined, [state, props].concat(args));
+      });
+      return memoizedResultFunc.apply(undefined, _toConsumableArray(params));
+    };
+
+    selector.resultFunc = resultFunc;
+    selector.recomputations = function () {
+      return recomputations;
+    };
+    selector.resetRecomputations = function () {
+      return recomputations = 0;
+    };
+    return selector;
+  };
+}
+
+var createSelector = exports.createSelector = createSelectorCreator(defaultMemoize);
+
+function createStructuredSelector(selectors) {
+  var selectorCreator = arguments.length <= 1 || arguments[1] === undefined ? createSelector : arguments[1];
+
+  if (typeof selectors !== 'object') {
+    throw new Error('createStructuredSelector expects first argument to be an object ' + ('where each property is a selector, instead received a ' + typeof selectors));
+  }
+  var objectKeys = Object.keys(selectors);
+  return selectorCreator(objectKeys.map(function (key) {
+    return selectors[key];
+  }), function () {
+    for (var _len5 = arguments.length, values = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+      values[_key5] = arguments[_key5];
+    }
+
+    return values.reduce(function (composition, value, index) {
+      composition[objectKeys[index]] = value;
+      return composition;
+    }, {});
+  });
+}
+},{}]},{},[1]);
