@@ -8,7 +8,8 @@ Boilerplate for a better Redux Architecture. This is the architecture we use at 
 # Table of Contents
 1. [Requirements](#requirements)
 2. [Install](#install)
-3. [Getting Started](#start)
+3. [Application Structure](#structure)
+4. [Routing](#routing)
 
 ## Requirements
 * **node**  `"^4.0.0"`
@@ -26,3 +27,42 @@ $ npm install
 $ gulp
 $ npm start
 ```
+
+To start in development
+```bash
+$ npm start
+$ gulp watch
+```
+
+## Application Structure
+
+Application structure is very similar to [MERN](http://mern.io/). Everyting is grouped by feature and not by actions / reducers / components.
+Check this article for a detailed information [Three Rules for Structuring Redux Application](https://jaysoo.ca/2016/02/28/organizing-redux-application/)
+
+```
+.
+├── server                    # Express application
+│   └── index.js              # Server application entry point
+├── src                       # Application source code
+│   ├── index.js              # Application entry point
+│   ├── index.less            # Application main css
+│   ├── pages                 # 
+│   ├── projects              # Sample module
+│   ├── todos                 # Sample module
+│   │   ├── index.js          # Module entry point
+│   │   ├── actions.js        # Module actions
+│   │   ├── constants.js      # Module constants
+│   │   ├── reducer.js        # Module reducer
+│   │   ├── selectors.js      # Module selectors
+│   │   ├── components        # 
+│   │   │   ├── ListTodos.js  # 
+│   │   │   ├── Todo.js       # 
+│   │   │   ├── SearchTodo.js # 
+│   │   └── views             # 
+│   │       ├── ViewTodos.js  # A view combines multiple components & provide data from state
+└── tests                     # Unit tests
+```
+
+## Routing
+
+This boilerplate use `react-router` for routing. See `application\index.js` to check all routes.

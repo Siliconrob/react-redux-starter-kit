@@ -12,7 +12,7 @@ var concat     = require("gulp-concat");
 var yargs      = require("yargs");
 
 var paths      = {
-	APP: "./application",
+	APP: "./src",
 	BUILD: "./build"
 };
 

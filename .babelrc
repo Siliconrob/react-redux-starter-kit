@@ -6,7 +6,7 @@
 	],
 	"plugins": [
 		["module-resolver", {
-			"root": ["./application"],
+			"root": ["./src"],
 			"alias": {
 			}
 		}]
