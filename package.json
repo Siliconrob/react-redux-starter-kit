@@ -4,7 +4,7 @@
   "description": "boilerplate for a better redux architecture",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server/index.js"
   },
   "repository": {
     "type": "git",
