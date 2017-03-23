@@ -65,4 +65,4 @@ Check this article for a detailed information [Three Rules for Structuring Redux
 
 ## Routing
 
-This boilerplate use `react-router` for routing. See `application\index.js` to check all routes.
+This boilerplate use `react-router` for routing. See `src\index.js` to check all routes.
