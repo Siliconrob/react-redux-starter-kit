@@ -21,7 +21,7 @@ Boilerplate for a better Redux Architecture. This is the architecture we use at 
 Clone the project and run:
 
 ```bash
-$ git clone https://github.com/davezuko/react-redux-starter-kit.git <project-name>
+$ git clone https://github.com/ghalex/react-redux-starter-kit.git <project-name>
 $ cd <project-name>
 $ npm install
 $ gulp
