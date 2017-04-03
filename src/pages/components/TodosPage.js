@@ -1,13 +1,12 @@
-import React from "react";
-import { ViewTodos } from "todos";
+import React from 'react'
+import { ViewTodos } from 'todos'
 
-const TodosPage = ({ }) => {
-
-	return (
-		<div className="page">
-			<ViewTodos />
-		</div>
-	)
+const TodosPage = () => {
+  return (
+    <div className='page'>
+      <ViewTodos />
+    </div>
+  )
 }
 
-export default TodosPage;
+export default TodosPage
